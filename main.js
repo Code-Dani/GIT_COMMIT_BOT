@@ -21,10 +21,8 @@ client.once('ready', ()=>{
     console.log('GCBot is back online, baby');
     client.user.setActivity("?help for the list of commands")
     //per il restart del bot
-    client.on('guildCreate', guild => {
-        const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
-        channel.send("@here **the bot just got restarted**\n_sorry for the inconvenient but you have to add again your repos :(_\nsend **?help** for all informations")
-    })
+    const channel = client.guild.channels.cache.find(channel => channel.type === 'text');
+    channel.send("@here **the bot just got restarted**\n_sorry for the inconvenient but you have to add again your repos :(_\nsend **?help** for all informations");
 });
 
 
@@ -53,7 +51,7 @@ client.on('message', message=>{
 
     message.delete();
     if(repoArray.length > 0 && SETchannel != null)                    
-        myIntervall = setInterval(gitCheck, 180000);
+        myIntervall = setInterval(gitCheck, 60000);
 });
 
 ///////////////////////////////////////////////////
