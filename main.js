@@ -109,7 +109,6 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var lastMerge = new Array();
 
 function gitCheck(){
-    chackUpdate();
     for(var i = 0; i < repoArray.length; i++){
         if(lastMerge[i]==null){
             lastMerge[i]="";
