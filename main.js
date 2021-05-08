@@ -20,6 +20,11 @@ for(const file of commandsFiles){
 client.once('ready', ()=>{
     console.log('GCBot is back online, baby');
     client.user.setActivity("?help for the list of commands")
+    //per il restart del bot
+    client.on('guildCreate', guild => {
+        const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+        channel.send("@here **the bot just got restarted**\n_sorry for the inconvenient but you have to add again your repos :(_\nsend **?help** for all informations")
+    })
 });
 
 
@@ -50,7 +55,6 @@ client.on('message', message=>{
     if(repoArray.length > 0 && SETchannel != null)                    
         myIntervall = setInterval(gitCheck, 180000);
 });
-
 
 ///////////////////////////////////////////////////
 
@@ -105,6 +109,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var lastMerge = new Array();
 
 function gitCheck(){
+    chackUpdate();
     for(var i = 0; i < repoArray.length; i++){
         if(lastMerge[i]==null){
             lastMerge[i]="";
@@ -145,5 +150,3 @@ function contains(value, searchFor)
 	}
 	return v.indexOf(v2) > -1;
 }
-
-
