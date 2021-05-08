@@ -21,7 +21,8 @@ client.once('ready', ()=>{
     console.log('GCBot is back online, baby');
     client.user.setActivity("?help for the list of commands")
     //per il restart del bot
-    const channel = client.guild.channels.cache.find(channel => channel.type === 'text');
+    const guild = client.guilds.cache.first();
+    const channel = guild.channels.cache.find(channel => channel.type === 'text');
     channel.send("@here **the bot just got restarted**\n_sorry for the inconvenient but you have to add again your repos :(_\nsend **?help** for all informations");
 });
 
