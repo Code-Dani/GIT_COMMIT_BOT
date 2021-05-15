@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const mongoose = require('mongoose');
 var repoArray = new Array();
 const client = new Discord.Client();
 const prefix = '?';
@@ -13,6 +14,10 @@ for(const file of commandsFiles){
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
+
+mongoose.connect('mongodb+srv://admin:'+process.env.PSW+'@cluster0.t4ene.mongodb.net/Data',{useNewUrlParser: true, useUnifiedTopology: true});
+
+
 
 /**
  * Basic event that lets you know bot is online
